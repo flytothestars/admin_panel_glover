@@ -12,9 +12,10 @@ trait FirebaseAuthTrait
 
     private function getFirebaseFactory()
     {
+        // dd(Storage::exists('vault/firebase_service.json'));
         try {
             return (new Factory)
-                ->withServiceAccount(Storage::get(setting('serviceKeyPath', 'vault/firebase_service.json')));
+                ->withServiceAccount(Storage::get('vault/firebase_service.json'));
         } catch (\Exception $ex) {
             throw new \Exception(__("Please setup firebase on backend"), 1);
         }
