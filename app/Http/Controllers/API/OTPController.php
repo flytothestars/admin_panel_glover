@@ -18,7 +18,31 @@ class OTPController extends Controller
     //traits
     use FirebaseAuthTrait;
 
-
+/**
+    * @OA\Post(path="/otp/send", tags={"Auth"},
+    *   summary="Firebase otp sms send to phone number",
+    *   @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="phone",
+     *                          type="string"
+     *                      ),
+     *                 ),
+     *                 example={
+     *                     "phone":"+7",
+     *                }
+     *             )
+     *         )
+     *      ),
+    *   @OA\Response(response=200,description="OK"),
+    *   @OA\Response(response=422,description="The provided credentials are incorrect.")
+    * )
+    */
+    
     public function sendOTP(Request $request)
     {
 
@@ -62,6 +86,35 @@ class OTPController extends Controller
         }
     }
 
+    /**
+    * @OA\Post(path="/otp/verify", tags={"Auth"},
+    *   summary="Check sms code",
+    *   @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="phone",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="code",
+     *                          type="string"
+     *                      ),
+     *                 ),
+     *                 example={
+     *                     "phone":"+7",
+     *                      "code":"999-999"
+     *                }
+     *             )
+     *         )
+     *      ),
+    *   @OA\Response(response=200,description="OK"),
+    *   @OA\Response(response=422,description="The provided credentials are incorrect.")
+    * )
+    */
     public function verifyOTP(Request $request)
     {
 
@@ -100,7 +153,35 @@ class OTPController extends Controller
         }
     }
 
-
+/**
+    * @OA\Post(path="/otp/firebase/verify", tags={"Auth"},
+    *   summary="Firebase check with token",
+    *   @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="phone",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="firebase_token",
+     *                          type="string"
+     *                      ),
+     *                 ),
+     *                 example={
+     *                     "phone":"+7",
+     *                      "firebase_token":"token"
+     *                }
+     *             )
+     *         )
+     *      ),
+    *   @OA\Response(response=200,description="OK"),
+    *   @OA\Response(response=422,description="The provided credentials are incorrect.")
+    * )
+    */
     public function verifyFirebaseToken(Request $request)
     {
 

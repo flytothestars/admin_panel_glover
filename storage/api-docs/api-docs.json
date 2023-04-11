@@ -1,0 +1,492 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My First API",
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api"
+        }
+    ],
+    "paths": {
+        "/app/settings": {
+            "get": {
+                "tags": [
+                    "General"
+                ],
+                "summary": "All settings",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Post your email and password and we will return a token. Use the token in the 'Authorization' header like so 'Bearer YOUR_TOKEN'",
+                "description": "",
+                "operationId": "",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "email": "example@domain.com",
+                                    "password": "example password"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "The provided credentials are incorrect."
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Registration",
+                "operationId": "e66f8a7452e13b03ae4e77dbb42e435c",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "phone": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "email": "example@domain.com",
+                                    "password": "example password",
+                                    "phone": "+7",
+                                    "name": "client name"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "The provided credentials are incorrect."
+                    }
+                }
+            }
+        },
+        "/banners": {
+            "get": {
+                "tags": [
+                    "General"
+                ],
+                "summary": "Banners",
+                "operationId": "32b355cd974c67eb6b3e933f1ebc5c37",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/categories": {
+            "get": {
+                "tags": [
+                    "General"
+                ],
+                "summary": "Categories",
+                "operationId": "11dc7bee7f8ad5b8d0a6a33493c5ea92",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/favourites": {
+            "get": {
+                "tags": [
+                    "Auth API"
+                ],
+                "summary": "Favourites",
+                "operationId": "3d63100380bb432abe12906df9516309",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Auth API"
+                ],
+                "summary": "Store favourites",
+                "operationId": "7816974075806a76d5696d71bed90293",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "product_id": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "product_id": ""
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "The provided credentials are incorrect."
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/otp/send": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Firebase otp sms send to phone number",
+                "operationId": "c8f7d02983e6da901f36d42140f73a73",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "phone": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "phone": "+7"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "The provided credentials are incorrect."
+                    }
+                }
+            }
+        },
+        "/otp/verify": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Check sms code",
+                "operationId": "fc32151dccbce8173d7bdcb7e688e1ea",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "phone": {
+                                                "type": "string"
+                                            },
+                                            "code": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "phone": "+7",
+                                    "code": "999-999"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "The provided credentials are incorrect."
+                    }
+                }
+            }
+        },
+        "/otp/firebase/verify": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Firebase check with token",
+                "operationId": "d3c41ca3090dd9f80d39a8832b00e420",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "phone": {
+                                                "type": "string"
+                                            },
+                                            "firebase_token": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "phone": "+7",
+                                    "firebase_token": "token"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "The provided credentials are incorrect."
+                    }
+                }
+            }
+        },
+        "/app/onboarding": {
+            "get": {
+                "tags": [
+                    "General"
+                ],
+                "operationId": "7f25d73710c8d6a9ca1a34957c9cce01",
+                "responses": {
+                    "200": {
+                        "description": "An example resource"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/products": {
+            "get": {
+                "tags": [
+                    "General"
+                ],
+                "summary": "Products",
+                "operationId": "39c74c9badb6c7c74d2612d1c7eeb685",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/product/review/summary": {
+            "get": {
+                "tags": [
+                    "General"
+                ],
+                "summary": "Product summary",
+                "operationId": "f40c15602c4f67abe7085adce14def8d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Id product",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "rating_summary",
+                        "in": "query",
+                        "description": "Rating",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/tags": {
+            "get": {
+                "tags": [
+                    "General"
+                ],
+                "summary": "Get tags",
+                "operationId": "31d3376b0360d84ec9014d43eafbe1f8",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/my/profile": {
+            "get": {
+                "tags": [
+                    "Auth API"
+                ],
+                "summary": "Profile",
+                "operationId": "94d20ccdf709b42669a0ebd2bbafb326",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "General",
+            "description": "General API"
+        },
+        {
+            "name": "Auth",
+            "description": "General API"
+        },
+        {
+            "name": "Auth API",
+            "description": "API work with auth user"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}

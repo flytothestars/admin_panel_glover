@@ -12,7 +12,15 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
-    //
+    /**
+    * @OA\Get(
+    *       path="/categories",
+    *       tags={"General"},
+    *       summary="Categories",
+    *       @OA\Response(response="200", description="Successful"),
+    *       @OA\Response(response="404", description="Not found")
+    * )
+    */
     public function index(Request $request)
     {
 

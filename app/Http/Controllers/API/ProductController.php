@@ -11,7 +11,15 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-
+    /**
+    * @OA\Get(
+    *       path="/products",
+    *       tags={"General"},
+    *       summary="Products",
+    *       @OA\Response(response="200", description="Successful"),
+    *       @OA\Response(response="404", description="Not found")
+    * )
+    */
     public function index(Request $request)
     {
 
