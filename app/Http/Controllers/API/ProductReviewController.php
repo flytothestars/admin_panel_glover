@@ -43,6 +43,7 @@ class ProductReviewController extends Controller
         }
     }
 
+    
     public function index(Request $request)
     {
         return ProductReview::with(

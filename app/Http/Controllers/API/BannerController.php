@@ -11,7 +11,15 @@ use Illuminate\Http\Request;
 class BannerController extends Controller
 {
 
-    //
+    /**
+    * @OA\Get(
+    *       path="/banners",
+    *       tags={"General"},
+    *       summary="Banners",
+    *       @OA\Response(response="200", description="Successful"),
+    *       @OA\Response(response="404", description="Not found")
+    * )
+    */
     public function index(Request $request)
     {
         return BannerResource::collection(

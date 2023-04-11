@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 
 
 
+    /**
+    * @OA\Get(
+    *       path="/app/settings",
+    *       tags={"General"},
+    *       summary="All settings",
+    *       @OA\Response(response="200", description="Successful"),
+    *       @OA\Response(response="404", description="Not found")
+    * )
+    */
 class AppSettingsController extends Controller
 {
 

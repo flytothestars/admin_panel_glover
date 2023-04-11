@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Propaganistas\LaravelPhone\PhoneNumber;
-
+use App\Forms\TokenForm as Form;
 
 
 
@@ -24,10 +24,42 @@ class AuthController extends Controller
     //traits
     use FirebaseAuthTrait;
 
-    //
+    /**
+    * @OA\Post(path="/login", tags={"Auth"},
+    *   summary="Post your email and password and we will return a token. Use the token in the 'Authorization' header like so 'Bearer YOUR_TOKEN'",
+    *   operationId="",
+    *   description="",
+    *   @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="email",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="password",
+     *                          type="string"
+     *                      )
+     *                 ),
+     *                 example={
+     *                     "email":"example@domain.com",
+     *                     "password":"example password"
+     *                }
+     *             )
+     *         )
+     *      ),
+    *   @OA\Response(
+    *     response=200,
+    *     description="OK",
+    *   ),
+    *   @OA\Response(response=422, description="The provided credentials are incorrect.")
+    * )
+    */
     public function login(Request $request)
     {
-
         $validator = Validator::make(
             $request->all(),
             [
@@ -237,7 +269,48 @@ class AuthController extends Controller
         }
     }
 
-    //
+    /**
+    * @OA\Post(path="/register", tags={"Auth"},
+    *   summary="Registration",
+    *   @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="email",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="password",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="name",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="phone",
+     *                          type="string"
+     *                      ),
+     *                 ),
+     *                 example={
+     *                     "email":"example@domain.com",
+     *                     "password":"example password",
+     *                      "phone":"+7",
+     *                      "name":"client name"
+     *                }
+     *             )
+     *         )
+     *      ),
+    *   @OA\Response(
+    *     response=200,
+    *     description="OK",
+    *   ),
+    *   @OA\Response(response=422, description="The provided credentials are incorrect.")
+    * )
+    */
     public function register(Request $request)
     {
 

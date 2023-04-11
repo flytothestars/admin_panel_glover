@@ -54,6 +54,20 @@ class UserController extends Controller
         ], 200);
     }
 
+
+    /**
+    * @OA\Get(
+    *       path="/my/profile",
+    *       tags={"Auth API"},
+    *       summary="Profile",
+    *       @OA\Response(response="200", description="Successful"),
+    *       @OA\Response(response="404", description="Not found"),
+    *       security={
+    *           {"sanctum": {}}
+    *       },
+    * )
+    */
+
     public function myProfile(Request $request)
     {
         return User::find(Auth::id());

@@ -8,6 +8,23 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Arr;
 
+/**
+ * @OA\Info(title="My First API", version="0.1")
+ * 
+ * @OA\Tag(name="General", description="General API")
+ * 
+ * @OA\Tag(name="Auth", description="General API")
+ * 
+ * @OA\Tag(name="Auth API", description="API work with auth user")
+ * 
+ * @OA\Server(
+ *      url="http://127.0.0.1:8000/api"
+ * )
+ * 
+ * 
+ *
+ */
+ 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

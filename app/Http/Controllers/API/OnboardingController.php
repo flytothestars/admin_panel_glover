@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 class OnboardingController extends Controller
 {
 
+    /**
+     * @OA\Get(
+     *     path="/app/onboarding",
+     *      tags={"General"},
+     *     @OA\Response(response="200", description="An example resource"),
+     *     @OA\Response(response="404", description="Not found")
+     * )
+     */
     public function index(Request $request)
     {
 

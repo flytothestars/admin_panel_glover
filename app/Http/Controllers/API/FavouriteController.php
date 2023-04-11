@@ -9,14 +9,55 @@ use Illuminate\Support\Facades\Auth;
 
 class FavouriteController extends Controller
 {
-
+/**
+    * @OA\Get(
+    *       path="/favourites",
+    *       tags={"Auth API"},
+    *       summary="Favourites",
+    *       @OA\Response(response="200", description="Successful"),
+    *       @OA\Response(response="404", description="Not found"),
+    *       security={
+    *           {"sanctum": {}}
+    *       },
+    * )
+    */
     public function index(Request $request){
         $favourites = Favourite::with('product.options')->where('user_id', "=", Auth::id())->get();
         return $favourites;
     }
-
+/**
+    * @OA\Post(path="/favourites", tags={"Auth API"},
+    *   summary="Store favourites",
+    *   @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="product_id",
+     *                          type="string"
+     *                      ),
+     *                 ),
+     *                 example={
+     *                     "product_id":"",
+     *                }
+     *             )
+     *         )
+     *      ),
+    *   @OA\Response(
+    *     response=200,
+    *     description="OK",
+    *   ),
+    *   @OA\Response(response=422, description="The provided credentials are incorrect."),
+    *   security={
+    *           {"sanctum": {}}
+    *       },
+    * )
+    */
     public function store(Request $request){
 
+        
         try{
 
             $model = Favourite::where('user_id', Auth::id())->where('product_id', $request->product_id)->first();

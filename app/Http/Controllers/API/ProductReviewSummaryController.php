@@ -9,12 +9,22 @@ use Illuminate\Http\Request;
 
 class ProductReviewSummaryController extends Controller
 {
-
+    /**
+    * @OA\Get(
+    *       path="/product/review/summary",
+    *       tags={"General"},
+    *       summary="Product summary",
+    *       @OA\Parameter (name="id", in="query", description="Id product", required=true, @OA\Schema(type="integer")),
+    *       @OA\Parameter (name="rating_summary", in="query", description="Rating", required=true, @OA\Schema(type="integer")),
+    *       @OA\Response(response="200", description="Successful"),
+    *       @OA\Response(response="404", description="Not found")
+    * )
+    */
     public function index(Request $request)
     {
 
         $product = Product::find($request->id);
-        $product->unsetRelation('vendor');
+        // $product->unsetRelation('vendor');
         $produuct['rating_summary'] = $product->rating_summary;
 
         return [
